@@ -11,27 +11,54 @@ bot = telebot.TeleBot(TOKEN)
 ia = pyborg.pyborg()
 
 class elBot(object):
+	"""
+	Esta clase es la encargada de recojer el mensaje que libera la clase pyBorg. Además,
+	se encarga de responder por medio de un objeto, instaciado de la clase TeleBot, al 
+	usuario que efectuó la acción de enviarle un mensaje.
+	"""
 
 	def __init__(self, tg):
 		self.tg = tg
 
 	def set_m(self, m):
+		"""
+		Redefine el objeto Message que indica quién envió el mensaje, su id para responderle
+		, y otros atributos. Acá solo se usará para poder responderle al usuario de forma
+		cómoda.
+		"""
 		self.m = m
 
 	def output(self, mensaje, argumento):
+		"""
+		Este método recibe el mensaje, como respuesta, desde un objeto de tipo pyBorg.
+
+		:param mensaje:		es el mensaje en si, un texto.
+		:param argumento:	es el sujeto.
+		"""
 		mensaje = mensaje.replace("#nick", argumento)
-		self.tg.send_chat_action(self.m.chat.id, 'typing')
+		# esto hace que Telegram muestre que el bot está escribiendo...
+		self.tg.send_chat_action(self.m.chat.id, 'typing') # <---
 		self.tg.reply_to(self.m, mensaje)
 
 # creamos un objeto que responde. Él pasa de pyborg a Telegram el mensaje.
 elbot = elBot(bot)
 
 def filtro(mensaje):
+	"""
+	Intento de filtrar los comandos enviados a los demás bots para que éste no
+	aprenda de ellos. Los comandos son de la forma:
+
+	/comando@botQueLosRecibe
+	"""
 	mensaje = mensaje.replace('\\','')
 	mensaje = mensaje.replace('@','')
 	return mensaje
 
 def es_invalido(mensaje):
+	"""
+	Intento de filtrar las URL y una que otras palabras que no queremos que el bot
+	aprenda y luego le responda a otro usuario.
+	"""
 	if mensaje.find('http')!=-1 \
 	 or mensaje.find('gay')!=-1:
 		return True
@@ -39,6 +66,7 @@ def es_invalido(mensaje):
 enable_reply = True # permitimos el responder.
 
 def listener(mensajes):
+	"Este método recibe los mensaje enviados desde Telegram."
 	for m in mensajes:
 		if m.content_type == 'text':
 			mensaje = m.text
@@ -61,7 +89,7 @@ def listener(mensajes):
 				
 				if len(mensaje.split(' '))==2:
 					if random.randint(0,3)!=2:
-						continue
+						continue # ignoramos palabras simples.
 				ia.process_msg(elbot, mensaje, probabilidad_responder, learn, usuario, owner = 0)
 			
 			else:
@@ -73,6 +101,7 @@ def listener(mensajes):
 				
 
 
+# le indicamos a la API de Telegram que método es el que debe recibir los mensajes.
 bot.set_update_listener(listener)
 
 bot.polling(none_stop=True, timeout=200)
