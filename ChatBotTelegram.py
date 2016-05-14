@@ -71,7 +71,6 @@ def listener(mensajes):
 		if m.content_type == 'text':
 			mensaje = m.text
 			usuario = m.from_user.first_name
-			cid = m.chat.id
 
 			# aleatoriamente guardamos
 			if random.randint(0,4)==3:
