@@ -3,6 +3,17 @@ Elemental código en Python que permite a un Bot de Telegram tener "inteligencia
 
 Este código es un pequeño [bot](https://es.wikipedia.org/wiki/Bot "bot") de [Telegram](https://es.wikipedia.org/wiki/Telegram_Messenger "Telegram Messenger") que usa la librería de [pyBorg](https://github.com/bdrewery/PyBorg). Está listo para revisar y aprender, además podrás conocer el funcionamiento y crear tú propio _bot de inteligencia artificial_. Luego vas con tus amigos y les muestras lo que has aprendido _:v_
 
+
+- [Cómo ponerlo en funcionamiento](#c%C3%B3mo-ponerlo-en-funcionamiento)
+  - [Consideraciones a tener en cuenta en Windows](#consideraciones-a-tener-en-cuenta-en-windows)
+- [Cosas a tener en cuenta](#cosas-a-tener-en-cuenta)
+  - [Pero... No tengo Telegram, ¿qué hago?](#pero-no-tengo-telegram-qu%C3%A9-hago)
+  - [Pero... El código no me funciona si lo ejecuto con python](#pero-el-c%C3%B3digo-no-me-funciona-si-lo-ejecuto-con-python)
+  - [Dónde conseguir este TOKEN](#d%C3%B3nde-conseguir-este-token)
+- [Se han creados unos archivos al ejecutar el script del bot...](#se-han-creados-unos-archivos-al-ejecutar-el-script-del-bot)
+- [Cómo funciona el bot y como que aprende](#c%C3%B3mo-funciona-el-bot-y-como-que-aprende)
+
+
 ## Cómo ponerlo en funcionamiento
 Al ser programado en [Python](https://es.wikipedia.org/wiki/Python) se necesita del interprete en su versión __2.x__ ya que es la versión en que trabaja la librería [pyBorg](https://github.com/bdrewery/PyBorg). Se puede ejecutar simplemente con:
 
