@@ -49,4 +49,8 @@ Ahora estará todo listo.
 
 Puedes seguir charlando con BotFather y decirle todo lo que quieres para tu nuevo bot, como la imagen del perfil, la descripción, etc.
 
+## Se han creados unos archivos al ejecutar el script del bot...
+Si amigo, entre ellos está `archivo.zip` si no estoy mal. Estos archivos permiten nada más y nada menos que el bot __APRENDAAA!!!__. Así no más.
 
+## Cómo funciona el bot y como que aprende
+El bot lee los mensajes que recibe y los despedaza en trocitos (como [Jack](https://es.wikipedia.org/wiki/Jack_el_Destripador)) y después lo guarda en `archivo.zip`. Al momento de recibir el mensaje, y habiendo almacenado ya un gran número de __oraciones__ el bot es capaz de responder en función de todo lo que ha aprendido, en las palabras que conoce, en la forma como se usaron, y en el número de veces que fueron usadas, y en otros factores.
