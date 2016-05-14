@@ -65,6 +65,13 @@ def es_invalido(mensaje):
 
 enable_reply = True # permitimos el responder.
 
+
+"""
+Esta variable es 1 si queremos que el bot 'aprenda'. Ó es cero si queremos que sólo
+rsponda a lo que se le envía.
+"""
+learn = 1
+
 def listener(mensajes):
 	"Este método recibe los mensaje enviados desde Telegram."
 	for m in mensajes:
