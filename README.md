@@ -65,3 +65,47 @@ Si amigo, entre ellos está `archive.zip` si no estoy mal. Estos archivos permit
 
 ## Cómo funciona el bot y como que aprende
 El bot lee los mensajes que recibe y los despedaza en trocitos (como lo hace [Jack el destripador](https://es.wikipedia.org/wiki/Jack_el_Destripador)) y después lo guarda en `archive.zip`. Al momento de recibir el mensaje, y habiendo almacenado ya un gran número de __oraciones__ el bot es capaz de responder en función de todo lo que ha aprendido, en las palabras que conoce, en la forma como se usaron, y en el número de veces que fueron usadas, y en otros factores.
+
+## Cómo se cuántas palabras ha aprendido el bot
+Si miramos en el archivo `ChatBotTelegram.py` podemos observar que allí se crea un objeto llamado `ia` instanciado de la clase `pyborg` en el módulo `pyborg`.
+```python
+import pyborg
+import sys
+
+TOKEN = ''
+
+bot = telebot.TeleBot(TOKEN)
+ia = pyborg.pyborg()
+```
+Este objeto representa la mente del bot, es por eso que ahora explicaré cómo podríamos obtener el númeor de palabras conocidas por el bot y el número de contextos.
+
+La clase `pyborg` tiene un "diccionario" con algunas configuraciones, entre ellas están las _keys_  `num_words` y `num_contexts`. 
+```python
+  self.settings = self.cfgfile.cfgset()
+  self.settings.load("pyborg.cfg",
+    { "num_contexts": ("Total word contexts", 0),
+    "num_words":    ("Total unique words known", 0),
+    "max_words":    ("max limits in the number of words known", 6000),
+    "learning":    ("Allow the bot to learn", 1),
+    "ignore_list":("Words that can be ignored for the answer", ['!.', '?.', "'", ',', ';']),
+    "censored":    ("Don't learn the sentence if one of those words is found", []),
+    "num_aliases":("Total of aliases known", 0),
+    "aliases":    ("A list of similars words", {}),
+    "process_with":("Wich way for generate the reply (pyborg|megahal)", "pyborg"),
+    "no_save"    :("If True, Pyborg don't saves the dictionary and configuration on disk", "False")
+  })
+```
+Si la queremos conocer el número de palabras o contextos simplemente le pedimos esos datos al objeto de clase `pyborg` recordando que nos devolverá una _tupla_ y el número que necesitamos está en la posición segunda, o sea `num_words[1]` y `num_contexts[1]`.
+
+#### Ejemplo:
+
+```python
+import pyborg
+
+ia = pyborg.pyborg()
+
+print('El bot conoce {0} palabras, pero eso no es todo, también conoce {1}'.format(ia.settings.num_words[1], ia.settings.num_contexts[1]))
+
+```
+
+__O lo hacemos con los comandos de__ `pyborg`
