@@ -77,9 +77,9 @@ TOKEN = ''
 bot = telebot.TeleBot(TOKEN)
 ia = pyborg.pyborg()
 ```
-Este objeto representa la mente del bot, es por eso que ahora explicaré cómo podríamos obtener el númeor de palabras conocidas por el bot y el número de contextos.
+Este objeto representa la mente del bot, es por eso que ahora explicaré cómo podríamos obtener el número de palabras conocidas por el bot y el número de contextos.
 
-La clase `pyborg` tiene un "diccionario" con algunas configuraciones, entre ellas están las _keys_  `num_words` y `num_contexts`. 
+La clase `pyborg` tiene un "diccionario" con algunas configuraciones, entre ellas están las _keys_  `num_words` y `num_contexts`, esto pasa a ser parte de un objeto, de la clase `cfgset` en el modulo `cfgfile`, llamado `settings`. 
 ```python
   self.settings = self.cfgfile.cfgset()
   self.settings.load("pyborg.cfg",
@@ -95,7 +95,7 @@ La clase `pyborg` tiene un "diccionario" con algunas configuraciones, entre ella
     "no_save"    :("If True, Pyborg don't saves the dictionary and configuration on disk", "False")
   })
 ```
-Si la queremos conocer el número de palabras o contextos simplemente le pedimos esos datos al objeto de clase `pyborg` recordando que nos devolverá una _tupla_ y el número que necesitamos está en la posición segunda, o sea `num_words[1]` y `num_contexts[1]`.
+Si la queremos conocer, el número de palabras o contextos, simplemente le pedimos esos datos al objeto `settings` dentro del objeto de clase `pyborg`, siendo estos: `settings.num_words` y `settings.num_contexts`.
 
 #### Ejemplo:
 
@@ -104,7 +104,7 @@ import pyborg
 
 ia = pyborg.pyborg()
 
-print('El bot conoce {0} palabras, pero eso no es todo, también conoce {1}'.format(ia.settings.num_words[1], ia.settings.num_contexts[1]))
+print('El bot conoce {0} palabras, pero eso no es todo, también conoce {1}'.format(ia.settings.num_words, ia.settings.num_contexts))
 
 ```
 
